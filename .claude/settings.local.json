@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx expo *)",
+      "Bash(eas *)",
+      "Bash(npm install*)",
+      "Bash(npm run*)",
+      "Bash(npm test*)",
+      "Bash(npx tsc*)",
+      "Bash(rtk *)",
+      "WebFetch(domain:docs.expo.dev)",
+      "WebFetch(domain:reactnative.dev)"
+    ]
+  }
+}
