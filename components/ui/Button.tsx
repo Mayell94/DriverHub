@@ -1,4 +1,5 @@
-import { Pressable, Text, StyleSheet, ViewStyle, TextStyle } from "react-native";
+import { useRef } from "react";
+import { Animated, Pressable, Text, StyleSheet, ViewStyle, TextStyle } from "react-native";
 import { useTheme } from "@/lib/context/ThemeContext";
 
 interface Props {
@@ -11,6 +12,24 @@ interface Props {
 
 export function Button({ children, primary, full, onPress, style }: Props) {
   const T = useTheme();
+  const scale = useRef(new Animated.Value(1)).current;
+
+  const onPressIn = () => {
+    Animated.spring(scale, {
+      toValue: 0.95,
+      useNativeDriver: true,
+      speed: 50,
+    }).start();
+  };
+
+  const onPressOut = () => {
+    Animated.spring(scale, {
+      toValue: 1,
+      useNativeDriver: true,
+      speed: 40,
+      bounciness: 8,
+    }).start();
+  };
 
   const containerStyle: ViewStyle = {
     backgroundColor: primary ? T.accent : "transparent",
@@ -34,11 +53,12 @@ export function Button({ children, primary, full, onPress, style }: Props) {
   };
 
   return (
-    <Pressable
-      onPress={onPress}
-      style={[styles.btn, containerStyle, style]}
-    >
-      <Text style={[styles.label, textStyle]}>{children}</Text>
+    <Pressable onPress={onPress} onPressIn={onPressIn} onPressOut={onPressOut}>
+      <Animated.View
+        style={[styles.btn, containerStyle, style, { transform: [{ scale }] }]}
+      >
+        <Text style={[styles.label, textStyle]}>{children}</Text>
+      </Animated.View>
     </Pressable>
   );
 }

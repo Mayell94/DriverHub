@@ -4,16 +4,21 @@ import { Tabs } from "expo-router";
 import { useTheme } from "@/lib/context/ThemeContext";
 import { HazardBar } from "@/components/themed/HazardBar";
 
-function TabIcon({ emoji, focused }: { emoji: string; focused: boolean }) {
+function TabIcon({ emoji, focused, accentColor }: { emoji: string; focused: boolean; accentColor: string }) {
   return (
-    <Text
-      style={[
-        styles.icon,
-        { opacity: focused ? 1 : 0.4 },
-      ]}
-    >
-      {emoji}
-    </Text>
+    <View style={styles.iconWrap}>
+      <Text
+        style={[
+          styles.icon,
+          { opacity: focused ? 1 : 0.4 },
+        ]}
+      >
+        {emoji}
+      </Text>
+      {focused && (
+        <View style={[styles.indicator, { backgroundColor: accentColor }]} />
+      )}
+    </View>
   );
 }
 
@@ -29,7 +34,7 @@ export default function TabLayout() {
             backgroundColor: T.card,
             borderTopWidth: 0,
             paddingTop: 0,
-            height: 60,
+            height: 64,
           },
           tabBarActiveTintColor: T.accent,
           tabBarInactiveTintColor: T.grayDim,
@@ -46,7 +51,7 @@ export default function TabLayout() {
           options={{
             title: "FEED",
             tabBarIcon: ({ focused }) => (
-              <TabIcon emoji="📡" focused={focused} />
+              <TabIcon emoji="📡" focused={focused} accentColor={T.accent} />
             ),
           }}
         />
@@ -55,7 +60,7 @@ export default function TabLayout() {
           options={{
             title: "FORUM",
             tabBarIcon: ({ focused }) => (
-              <TabIcon emoji="💬" focused={focused} />
+              <TabIcon emoji="💬" focused={focused} accentColor={T.accent} />
             ),
           }}
         />
@@ -64,7 +69,7 @@ export default function TabLayout() {
           options={{
             title: "FRIENDS",
             tabBarIcon: ({ focused }) => (
-              <TabIcon emoji="👥" focused={focused} />
+              <TabIcon emoji="👥" focused={focused} accentColor={T.accent} />
             ),
           }}
         />
@@ -73,7 +78,7 @@ export default function TabLayout() {
           options={{
             title: "MAP",
             tabBarIcon: ({ focused }) => (
-              <TabIcon emoji="🗺️" focused={focused} />
+              <TabIcon emoji="🗺️" focused={focused} accentColor={T.accent} />
             ),
           }}
         />
@@ -82,12 +87,12 @@ export default function TabLayout() {
           options={{
             title: "ME",
             tabBarIcon: ({ focused }) => (
-              <TabIcon emoji="👤" focused={focused} />
+              <TabIcon emoji="👤" focused={focused} accentColor={T.accent} />
             ),
           }}
         />
       </Tabs>
-      <View style={[styles.hazardWrap, { bottom: 60 }]}>
+      <View style={[styles.hazardWrap, { bottom: 64 }]}>
         <HazardBar />
       </View>
     </View>
@@ -95,8 +100,17 @@ export default function TabLayout() {
 }
 
 const styles = StyleSheet.create({
+  iconWrap: {
+    alignItems: "center",
+    gap: 3,
+  },
   icon: {
     fontSize: 19,
+  },
+  indicator: {
+    width: 16,
+    height: 2,
+    borderRadius: 1,
   },
   hazardWrap: {
     position: "absolute",
