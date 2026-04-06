@@ -1,8 +1,4 @@
 import { Theme } from "./types";
-import { Platform } from "react-native";
-
-const sans = Platform.select({ ios: "System", default: "sans-serif" });
-const mono = Platform.select({ ios: "Menlo", default: "monospace" });
 
 export const THEMES: Record<string, Theme> = {
   mostWanted: {
@@ -24,9 +20,9 @@ export const THEMES: Record<string, Theme> = {
     gray: "#888",
     grayDim: "#555",
     grayDark: "#333",
-    headFont: sans,
-    bodyFont: sans,
-    monoFont: mono,
+    headFont: "Teko_700Bold",
+    bodyFont: "Barlow_400Regular",
+    monoFont: "BarlowSemiCondensed_400Regular",
     hazard: true,
     mTheme: false,
     gradientColors: ["#1a1000", "#0B0B0B", "#050505"],
@@ -50,9 +46,9 @@ export const THEMES: Record<string, Theme> = {
     gray: "#7B8FA8",
     grayDim: "#4A5E78",
     grayDark: "#263040",
-    headFont: sans,
-    bodyFont: sans,
-    monoFont: mono,
+    headFont: "Rajdhani_700Bold",
+    bodyFont: "Exo2_400Regular",
+    monoFont: "ShareTechMono_400Regular",
     hazard: false,
     mTheme: false,
     gradientColors: ["#0a1830", "#0C1220", "#060810"],
@@ -76,9 +72,9 @@ export const THEMES: Record<string, Theme> = {
     gray: "#706B80",
     grayDim: "#44405A",
     grayDark: "#252030",
-    headFont: sans,
-    bodyFont: sans,
-    monoFont: mono,
+    headFont: "Syne_700Bold",
+    bodyFont: "NunitoSans_400Regular",
+    monoFont: "JetBrainsMono_400Regular",
     hazard: false,
     mTheme: false,
     gradientColors: ["#12101E", "#06060A", "#030308"],
@@ -105,9 +101,9 @@ export const THEMES: Record<string, Theme> = {
     gray: "#7A7A8E",
     grayDim: "#4A4A5E",
     grayDark: "#28283A",
-    headFont: sans,
-    bodyFont: sans,
-    monoFont: mono,
+    headFont: "BebasNeue_400Regular",
+    bodyFont: "IBMPlexSans_400Regular",
+    monoFont: "IBMPlexMono_400Regular",
     hazard: false,
     mTheme: true,
     gradientColors: ["#0d0d1a", "#0A0A0E", "#050508"],
